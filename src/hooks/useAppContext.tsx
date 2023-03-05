@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import { useContext } from "react";
 import axios from "axios";
 import { useMap } from "react-map-gl";
 import config from "../config";

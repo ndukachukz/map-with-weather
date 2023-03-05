@@ -66,7 +66,6 @@ const useAppContext = () => {
         `https://api.openweathermap.org/data/3.0/onecall?lat=${viewport?.latitude}&lon=${viewport?.longitude}&appid=${config.OPENWEATHER_TOKEN}`
       );
 
-      console.log("CITY WEATHER DATA => ", data);
       setWeather(data);
       map?.flyTo({ center: [city?.longitude, city?.latitude] });
     } catch (error: any) {

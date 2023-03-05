@@ -1,4 +1,6 @@
 import React, { createContext, useReducer } from "react";
+import { cities } from "../constants";
+import { Cities, City } from "../types";
 
 interface viewport {
   latitude: number;
@@ -7,13 +9,20 @@ interface viewport {
 }
 
 interface InitialState {
-  viewport: viewport;
-  cities: any[];
-  weather: any;
+  viewport?: viewport;
+  cities?: Cities;
+  weather?: any;
+  selectedCity?: City | null;
+  showWeatherPopup?: boolean;
 }
 
 interface Action {
-  type: "setViewport" | "setWeather" | "setCities";
+  type:
+    | "setViewport"
+    | "setWeather"
+    | "setCities"
+    | "setSelectedCity"
+    | "setShowWeatherPopup";
   payload: InitialState;
 }
 
@@ -35,12 +44,33 @@ function reducer(state: InitialState, action: Action): InitialState {
         ...state,
         cities: action.payload.cities,
       };
+
+    case "setSelectedCity":
+      return {
+        ...state,
+        selectedCity: action.payload.selectedCity,
+      };
+    case "setShowWeatherPopup":
+      return {
+        ...state,
+        showWeatherPopup: action.payload.showWeatherPopup,
+      };
     default:
       throw new Error(`unkwon ${action.type}`);
   }
 }
 
-const initialState: InitialState = {} as InitialState;
+const initialState: InitialState = {
+  viewport: {
+    longitude: -122.4,
+    latitude: 37.8,
+    zoom: 14,
+  },
+  selectedCity: null,
+  weather: null,
+  cities,
+  showWeatherPopup: false,
+} as InitialState;
 
 type AppContext = InitialState & {
   dispatch: React.Dispatch<Action>;

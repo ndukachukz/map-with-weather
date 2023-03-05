@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: JSX.Element }) => {
     if (!selectedCity) return;
     const drawerCheckBox =
       document.querySelector<HTMLInputElement>("#my-drawer-2");
-    drawerCheckBox.checked = false;
+    if (drawerCheckBox) drawerCheckBox.checked = false;
   }, [selectedCity]);
   return (
     <div className="drawer drawer-mobile relative">

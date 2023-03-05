@@ -67,7 +67,7 @@ const useAppContext = () => {
       );
 
       setWeather(data);
-      map?.flyTo({ center: [city?.longitude, city?.latitude] });
+      map?.flyTo({ center: [Number(city?.longitude), Number(city?.latitude)] });
     } catch (error: any) {
       console.error("CITY WEATHER DATA => ", error.message);
     }
